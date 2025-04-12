@@ -1,0 +1,43 @@
+<div class="login-container" [ngClass]="{ 'dark-theme': isDarkTheme }">
+  <h2>Welcome Aboard</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="input-group">
+      <label for="username">Crew ID or Email</label>
+      <input
+        id="username"
+        [(ngModel)]="email"
+        name="username"
+        required
+        type="text"
+        placeholder="Enter your Crew ID or Email"
+      />
+    </div>
+
+    <div class="input-group">
+      <label for="password">Password</label>
+      <div class="password-wrapper">
+        <input
+          id="password"
+          [(ngModel)]="password"
+          name="password"
+          required
+          [type]="showPassword ? 'text' : 'password'"
+          placeholder="Enter your password"
+        />
+        <button
+          type="button"
+          class="toggle-password"
+          (click)="togglePassword()"
+          aria-label="Toggle password visibility"
+        >
+          <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+        </button>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!email || !password || loading">
+      {{ loading ? "Setting Sail..." : "Set Sail" }}
+    </button>
+    <div *ngIf="loginError" class="error-msg">{{ loginError }}</div>
+  </form>
+</div>

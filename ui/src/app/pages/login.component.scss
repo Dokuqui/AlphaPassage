@@ -1,0 +1,200 @@
+@use "sass:color";
+
+$light-bg: #f8fafc;
+$light-text: #2d3748;
+$light-primary: #003087;
+$light-secondary: #00b4d8;
+$light-accent: #ff9f1c;
+$light-border: #e2e8f0;
+$light-shadow: rgba(0, 48, 135, 0.1);
+
+$dark-bg: #1a202c;
+$dark-text: #e2e8f0;
+$dark-primary: #63b3ed;
+$dark-secondary: #4fd1c5;
+$dark-accent: #fbd38d;
+$dark-border: #4a5568;
+$dark-shadow: rgba(0, 0, 0, 0.2);
+
+$transition: all 0.2s ease;
+
+.login-container {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  background: $light-bg;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px $light-shadow;
+  transition: $transition;
+
+  &.dark-theme {
+    background: $dark-bg;
+    box-shadow: 0 3px 12px $dark-shadow;
+
+    h2 {
+      color: $dark-primary;
+    }
+
+    .input-group {
+      label {
+        color: $dark-text;
+      }
+
+      input {
+        background: color.adjust($dark-bg, $lightness: 10%);
+        border-color: $dark-border;
+        color: $dark-text;
+
+        &:focus {
+          border-color: $dark-secondary;
+          box-shadow: 0 0 4px rgba(79, 209, 197, 0.3);
+        }
+
+        &::placeholder {
+          color: color.adjust($dark-text, $lightness: -30%);
+        }
+      }
+
+      .password-wrapper {
+        .toggle-password {
+          i {
+            color: $dark-text;
+          }
+
+          &:hover i {
+            color: $dark-secondary;
+          }
+        }
+      }
+    }
+
+    button[type="submit"] {
+      background: $dark-primary;
+
+      &:hover {
+        background: color.adjust($dark-primary, $lightness: 10%);
+      }
+    }
+  }
+
+  h2 {
+    text-align: center;
+    color: $light-primary;
+    margin-bottom: 1.75rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: $transition;
+  }
+
+  .input-group {
+    margin-bottom: 1.25rem;
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: $light-text;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: $transition;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid $light-border;
+      border-radius: 5px;
+      font-size: 0.95rem;
+      background: white;
+      color: $light-text;
+      box-sizing: border-box;
+      transition: $transition;
+
+      &:focus {
+        border-color: $light-secondary;
+        box-shadow: 0 0 4px rgba(0, 180, 216, 0.3);
+        outline: none;
+        transform: scale(1.01);
+      }
+
+      &::placeholder {
+        color: color.adjust($light-text, $lightness: 40%);
+      }
+    }
+
+    .password-wrapper {
+      position: relative;
+
+      .toggle-password {
+        position: absolute;
+        right: 0.6rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          font-size: 1rem;
+          color: $light-text;
+          transition: $transition;
+        }
+
+        &:hover i {
+          color: $light-secondary;
+        }
+      }
+    }
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 0.85rem;
+    background: $light-primary;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover {
+      background: color.adjust($light-primary, $lightness: 10%);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .error-msg {
+    color: red;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 1rem;
+    h2 {
+      font-size: 1.4rem;
+    }
+    input {
+      font-size: 0.9rem;
+    }
+  }
+}
+
